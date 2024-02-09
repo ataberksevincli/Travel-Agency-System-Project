@@ -1,6 +1,7 @@
 package dao;
 
 import core.Db;
+import entity.Hotel;
 import entity.Pension;
 import entity.Season;
 
@@ -10,8 +11,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class SeasonDao {
-
     private final Connection con;
+
+    private final HotelDao hotelDao = new HotelDao();
     public SeasonDao() {this.con = Db.getInstance();
     }
 
@@ -84,6 +86,7 @@ public class SeasonDao {
         Season season = new Season();
         season.setId(rs.getInt("id"));
         season.setHotel_id(rs.getInt("hotel_id"));
+        season.setHotel(this.hotelDao.getById(rs.getInt("hotel_id")));
         season.setStart_date(LocalDate.parse(rs.getString("start_date")));
         season.setFinish_date(LocalDate.parse(rs.getString("finish_date")));
         return season;

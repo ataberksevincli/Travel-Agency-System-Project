@@ -4,7 +4,6 @@ import core.Helper;
 import dao.HotelDao;
 import entity.Hotel;
 
-
 import java.util.ArrayList;
 
 public class HotelManager {
@@ -48,4 +47,9 @@ public class HotelManager {
         }
         return this.hotelDao.save(hotel);
     }
+
+    public Hotel getById(int id){
+        return this.hotelDao.getById(id);
+    }
 }
+

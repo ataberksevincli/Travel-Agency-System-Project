@@ -1,16 +1,12 @@
 package business;
 
 import core.Helper;
-import dao.PensionDao;
 import dao.SeasonDao;
-import entity.Pension;
 import entity.Season;
 
 import java.util.ArrayList;
 
 public class SeasonManager {
-
-
     private final SeasonDao seasonDao;
 
     public SeasonManager() {
@@ -42,7 +38,7 @@ public class SeasonManager {
             Object[] rowObject = new Object[size];
             int i = 0;
             rowObject[i++] = season.getId();
-            rowObject[i++] = season.getHotel_id();
+            rowObject[i++] = season.getHotel().getName();
             rowObject[i++] = season.getStart_date().toString();
             rowObject[i++] = season.getFinish_date().toString();
             seasonRowList.add(rowObject);

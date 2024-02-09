@@ -43,7 +43,6 @@ public class PensionTypeAddView extends Layout {
         guiInitilaze(500, 500);
         this.cmb_pension.setModel(new DefaultComboBoxModel<>(Pension.PensionType.values()));
 
-        //0 geldiği yer ekrana yazdırma kısmı
         for (Hotel hotel : this.hotelManager.findAll()) {
             this.cmb_select_hotel.addItem(hotel.getComboItem());
         }
@@ -60,10 +59,10 @@ public class PensionTypeAddView extends Layout {
                 result = this.pensionManager.save(this.pension);
             }
             if (result) {
-                Helper.showMsg("done");
+                Helper.showMsg("Pension Add Successfull.");
                 dispose();
             } else {
-                Helper.showMsg("error");
+                Helper.showMsg("error. SOMETHING HAPPENED");
             }
         });
     }

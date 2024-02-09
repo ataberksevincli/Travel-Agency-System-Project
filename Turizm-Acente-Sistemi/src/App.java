@@ -10,8 +10,8 @@ public class App {
     public static void main(String[] args) {
         Helper.setTheme();
         UserManager userManager = new UserManager();
-        LoginView loginView = new LoginView();
-//EmployeeView employeeView = new EmployeeView(userManager.findByLogin("Employee","1234"));
+        //LoginView loginView = new LoginView();
+EmployeeView employeeView = new EmployeeView(userManager.findByLogin("Employee","1234"));
 
 }
 

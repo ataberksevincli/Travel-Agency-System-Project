@@ -2,9 +2,6 @@ package dao;
 
 import core.Db;
 import entity.Pension;
-import entity.Hotel;
-import entity.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -100,6 +97,7 @@ public class PensionDao {
         Pension pension = new Pension();
         pension.setId(rs.getInt("id"));
         pension.setHotel_id(rs.getInt("hotel_id"));
+        pension.setHotel(this.hotelDao.getById(rs.getInt("hotel_id")));
         pension.setPension_type(String.valueOf(Pension.PensionType.valueOf(rs.getString("pension_type"))));
         return pension;
     }

@@ -76,10 +76,10 @@ public class SeasonAddView extends Layout {
 
             result = this.seasonManager.save(this.season);
             if (result) {
-                Helper.showMsg("done");
+                Helper.showMsg("Season Add Successfull");
                 dispose();
             } else {
-                Helper.showMsg("error");
+                Helper.showMsg("error. SOMETHING HAPPENED");
             }
         });
     }

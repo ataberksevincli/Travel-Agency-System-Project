@@ -11,14 +11,21 @@ import java.util.ArrayList;
 
 public class RoomDao {
     private final Connection con;
+
+    private PensionDao pensionDao;
+    private HotelDao hotelDao;
+
     public RoomDao() {
         this.con = Db.getInstance();
+        this.pensionDao = new PensionDao();
+        this.hotelDao = new HotelDao();
     }
 
 
     public ArrayList<Room> findAll() {
         return this.selectByQuery("SELECT * FROM public.room ORDER BY id ASC");
     }
+
     public ArrayList<Room> selectByQuery(String query) {
         ArrayList<Room> roomList = new ArrayList<>();
         try {
@@ -33,6 +40,7 @@ public class RoomDao {
         }
         return roomList;
     }
+
     public Room getById(int id) {
         Room obj = null;
         String query = "SELECT * FROM public.room WHERE id = ? ";
@@ -79,11 +87,11 @@ public class RoomDao {
             pr.setDouble(7, room.getChild_price());
             pr.setInt(8, room.getBed_capacity());
             pr.setInt(9, room.getSquare_meter());
-            pr.setBoolean(10,room.isTelevision());
-            pr.setBoolean(11,room.isMinibar());
-            pr.setBoolean(12,room.isGame_console());
-            pr.setBoolean(13,room.isSafe_box());
-            pr.setBoolean(14,room.isProjection());
+            pr.setBoolean(10, room.isTelevision());
+            pr.setBoolean(11, room.isMinibar());
+            pr.setBoolean(12, room.isGame_console());
+            pr.setBoolean(13, room.isSafe_box());
+            pr.setBoolean(14, room.isProjection());
             return pr.executeUpdate() != -1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -121,11 +129,12 @@ public class RoomDao {
                 pr.setDouble(7, room.getChild_price());
                 pr.setInt(8, room.getBed_capacity());
                 pr.setInt(9, room.getSquare_meter());
-                pr.setBoolean(10,room.isTelevision());
-                pr.setBoolean(11,room.isMinibar());
-                pr.setBoolean(12,room.isGame_console());
-                pr.setBoolean(13,room.isSafe_box());
-                pr.setBoolean(14,room.isProjection());
+                pr.setBoolean(10, room.isTelevision());
+                pr.setBoolean(11, room.isMinibar());
+                pr.setBoolean(12, room.isGame_console());
+                pr.setBoolean(13, room.isSafe_box());
+                pr.setBoolean(14, room.isProjection());
+                pr.setInt(15, room.getId());
                 return pr.executeUpdate() != -1;
             }
         } catch (SQLException throwables) {
@@ -142,6 +151,7 @@ public class RoomDao {
         Room room = new Room();
         room.setId(rs.getInt("id"));
         room.setHotel_id(rs.getInt("hotel_id"));
+        room.setPension_id(rs.getInt("pension_id"));
         room.setSeason_id(rs.getInt("season_id"));
         room.setType(rs.getString("type"));
         room.setStock(rs.getInt("stock"));
@@ -154,6 +164,8 @@ public class RoomDao {
         room.setGame_console(rs.getBoolean("game_console"));
         room.setSafe_box(rs.getBoolean("safe_box"));
         room.setProjection(rs.getBoolean("projection"));
+        room.setHotel(this.hotelDao.getById(rs.getInt("hotel_id")));
+        room.setPension(this.pensionDao.getById(rs.getInt("pension_id")));
         return room;
     }
 }

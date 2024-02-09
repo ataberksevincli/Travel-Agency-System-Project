@@ -40,7 +40,7 @@ public class PensionManager {
             Object[] rowObject = new Object[size];
             int i = 0;
             rowObject[i++] = pension.getId();
-            rowObject[i++] = pension.getHotel_id();
+            rowObject[i++] = pension.getHotel().getName();
             rowObject[i++] = pension.getPension_type();
             pensionRowList.add(rowObject);
         }

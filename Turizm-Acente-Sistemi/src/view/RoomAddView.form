@@ -89,10 +89,10 @@
         </constraints>
         <properties>
           <model>
-            <item value="SingleRoom"/>
-            <item value="DoubleRoom"/>
-            <item value="JuniorSuiteRoom"/>
-            <item value="SuiteRoom"/>
+            <item value="Single Room"/>
+            <item value="Double Room"/>
+            <item value="Junior Suit Room"/>
+            <item value="Suit Room"/>
           </model>
         </properties>
       </component>

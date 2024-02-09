@@ -1,6 +1,10 @@
 package entity;
 
+import business.HotelManager;
+import business.PensionManager;
 import core.ComboItem;
+
+import java.io.PrintWriter;
 
 public class Room {
     private int id;
@@ -18,12 +22,13 @@ public class Room {
     private boolean game_console;
     private boolean safe_box;
     private boolean projection;
-
     private Hotel hotel;
+    private Season season;
     private Pension pension;
 
-    public Room(int id, int hotel_id, int pension_id, int season_id, String type, int stock, double adult_price, double child_price, int bed_capacity, int square_meter, boolean television, boolean minibar, boolean game_console, boolean safe_box, boolean projection) {
+   /* public Room(int id, int hotel_id, int pension_id, int season_id, String type, int stock, double adult_price, double child_price, int bed_capacity, int square_meter, boolean television, boolean minibar, boolean game_console, boolean safe_box, boolean projection) {
         this.id = id;
+        this.hotel = hotel;
         this.hotel_id = hotel_id;
         this.pension_id = pension_id;
         this.season_id = season_id;
@@ -38,13 +43,13 @@ public class Room {
         this.game_console = game_console;
         this.safe_box = safe_box;
         this.projection = projection;
+    }*/
+
+    public Room() {
+
     }
 
-    public Room(){
-
-    }
-
-    public enum RoomType{
+    public enum RoomType {
         SingleRoom,
         DoubleRoom,
         JuniorSuitRoom,
@@ -172,10 +177,33 @@ public class Room {
         this.projection = projection;
     }
 
+    public Hotel getHotel() {
+        return hotel;
+    }
 
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
 
-    public ComboItem getComboItem(){
-        return new ComboItem(this.getId(),this.getType());}
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
+
+    public Pension getPension() {
+        return pension;
+    }
+
+    public void setPension(Pension pension) {
+        this.pension = pension;
+    }
+
+    public ComboItem getComboItem() {
+        return new ComboItem(this.getId(), this.getType());
+    }
 
     @Override
     public String toString() {

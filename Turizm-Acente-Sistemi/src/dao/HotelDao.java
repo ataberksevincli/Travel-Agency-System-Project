@@ -2,8 +2,6 @@ package dao;
 
 import core.Db;
 import entity.Hotel;
-import entity.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -106,6 +104,21 @@ public class HotelDao {
 
         }
         return userList;
+    }
+
+    public Hotel getById(int id) {
+        Hotel obj = null;
+        String query = "SELECT * FROM public.hotel WHERE id = ? ";
+        try {
+            PreparedStatement pr = this.con.prepareStatement(query);
+            pr.setInt(1, id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) obj = this.match(rs);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return obj;
     }
 
 }

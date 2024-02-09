@@ -57,11 +57,7 @@ public class RoomAddView extends Layout {
         this.roomManager = new RoomManager();
         this.pensionManager = new PensionManager();
         this.room = new Room();
-        this.pension = new Pension();
-        this.season = new Season();
-        this.user = user;
         this.hotelManager = new HotelManager();
-        this.hotel = hotel;
         this.add(container);
         guiInitilaze(700, 700);
 
@@ -71,7 +67,10 @@ public class RoomAddView extends Layout {
 
         this.cmb_otel.addActionListener(e -> {
             //Session comboBox'ı güncellenir.
-            ArrayList<Season> seasons = this.seasonManager.getSeasonsByOtelId(((ComboItem) cmb_otel.getSelectedItem()).getKey());
+
+            ComboItem selectedHotel = (ComboItem) cmb_otel.getSelectedItem();
+
+            ArrayList<Season> seasons = this.seasonManager.getSeasonsByOtelId(selectedHotel.getKey());
             cmb_season.removeAllItems();
 
             for (Season season : seasons) {
@@ -79,10 +78,7 @@ public class RoomAddView extends Layout {
             }
 
             //Pension comboBox'ı güncellenir.
-            ComboItem selectedOtelItem = (ComboItem) cmb_otel.getSelectedItem();
-            int selectedOtelId = selectedOtelItem.getKey();
-
-            ArrayList<Pension> pensions = pensionManager.getPensionsByOtelId(selectedOtelId);
+            ArrayList<Pension> pensions = pensionManager.getPensionsByOtelId(selectedHotel.getKey());
             cmb_pension.removeAllItems(); // Var olan öğeleri temizle
 
             // Yeni pansiyonları combobox'a ekle
@@ -92,27 +88,24 @@ public class RoomAddView extends Layout {
             }
         });
 
-        for (Room room : this.roomManager.findAll()) {
-            this.cmb_roomtype.addItem(room.getType());
-        }
-
-
         this.btn_save.addActionListener(e -> {
             if (Helper.isFieldListEmpty(new JTextField[]{this.fld_stock, this.fld_adultprice, this.fld_childprice, this.fld_bedcapacity, this.fld_m2})) {
                 Helper.showMsg("fill");
             } else {
                 boolean result = false;
 
+
                 ComboItem selectedHotel = (ComboItem) cmb_otel.getSelectedItem();
                 this.room.setHotel_id(selectedHotel.getKey());
+
                 ComboItem selectedPension = (ComboItem) cmb_pension.getSelectedItem();
+                this.room.setPension_id(selectedPension.getKey());
+
+                ComboItem selectedSeason = (ComboItem) cmb_season.getSelectedItem();
+                this.room.setSeason_id(selectedSeason.getKey());
 
                 // PENSION VE SEASON SETLEYEMEMİŞSİN KONTROL ET AKŞAM GELİNCE
-
-
-                this.room.setPension_id(selectedPension.getKey());
                 this.room.setType((String) this.cmb_roomtype.getSelectedItem());
-                this.room.setSeason_id(this.cmb_season.getSelectedIndex());
                 this.room.setStock(Integer.parseInt(fld_stock.getText()));
                 this.room.setAdult_price(Integer.parseInt(fld_adultprice.getText()));
                 this.room.setChild_price(Double.parseDouble(fld_childprice.getText()));
@@ -124,8 +117,9 @@ public class RoomAddView extends Layout {
                 this.room.setSafe_box(btn_case.isSelected());
                 this.room.setProjection(btn_projection.isSelected());
                 result = this.roomManager.save(this.room);
+
                 if (result) {
-                    Helper.showMsg("done");
+                    Helper.showMsg("Room Add Succcessful.");
                     dispose();
                 } else {
                     Helper.showMsg("error");
