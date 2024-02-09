@@ -203,12 +203,12 @@ public class EmployeeView extends Layout {
     }
 
     public void loadReservationTable() {
-        Object[] col_reservation = {"ID", "Oda ID", "Check in Date", "Check out Date", "Total Price", "Number of Guest", "Guest Name", "Guest Citizen ID","Guest Mail","Guest Phone No"};
+        Object[] col_reservation = {"ID", "Oda ID", "Check in Date", "Check out Date", "Total Price", "Number of Guest", "Guest Name", "Guest Citizen ID", "Guest Mail", "Guest Phone No"};
         ArrayList<Object[]> reservationList = reservationManager.getForTable(col_reservation.length, reservationManager.findAll());
         this.createTable(this.tmbdl_reservation, this.tbl_reservation, col_reservation, reservationList);
     }
 
-    private void loadReservationComponent(){
+    private void loadReservationComponent() {
 
         tableRowSelect(tbl_reservation);
         JPopupMenu reservation_menu = new JPopupMenu();
@@ -223,13 +223,12 @@ public class EmployeeView extends Layout {
             Room selectedRoom = this.roomManager.getById(selectRoomId);
 
 
-
             ReservationAddView reservationAddView = new ReservationAddView(
                     selectReservation,
                     selectedRoom,
                     selectReservation.getCheck_in_date().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                    selectReservation.getCheck_out_date().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),selectReservation.getTotal_price(),selectReservation.getGuest_count()
-                    );
+                    selectReservation.getCheck_out_date().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), selectReservation.getTotal_price(), selectReservation.getGuest_count()
+            );
             reservationAddView.setTotalPrice(100);
             //reservationAddView.setTotalPrice(100);
             reservationAddView.addWindowListener(new WindowAdapter() {
@@ -238,7 +237,7 @@ public class EmployeeView extends Layout {
                     loadReservationTable();
 
                 }
-                    });
+            });
         });
         reservation_menu.add("Delete Reservation").addActionListener(e -> {
             int selectReservationId = this.getTableSelectedRow(tbl_reservation, 0);
@@ -257,11 +256,11 @@ public class EmployeeView extends Layout {
                 }
             }
             // ılgılı ıd e aıt room  stok + 1
-
         });
         this.tbl_reservation.setComponentPopupMenu(reservation_menu);
     }
-        private void addRoomButton() {
+
+    private void addRoomButton() {
         btn_addroom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -295,25 +294,25 @@ public class EmployeeView extends Layout {
         room_menu.add("Create Reservation").addActionListener(e -> {
 
 
-            int selectId = this.getTableSelectedRow(this.tbl_room,0);
+            int selectId = this.getTableSelectedRow(this.tbl_room, 0);
 
-            if (fld_adult.getText().isEmpty()|| fld_child.getText().isEmpty() ) {
-                Helper.showMsg("Please enter a valid child or adult number1");
+            if (fld_adult.getText().isEmpty() || fld_child.getText().isEmpty()) {
+                Helper.showMsg("Please enter a valid child or adult number");
                 return;
             }
 
-            int adultNumber=0;
-            int childNumber=0;
+            int adultNumber = 0;
+            int childNumber = 0;
             try {
                 adultNumber = Integer.parseInt(fld_adult.getText());
                 childNumber = Integer.parseInt(fld_child.getText());
             } catch (Exception exp) {
-                Helper.showMsg("Please enter a valid  child or adult number2");
+                Helper.showMsg("Please enter a valid  child or adult number");
                 return;
             }
 
-            if (adultNumber < 0 && childNumber < 0 ) {
-                Helper.showMsg("Please enter a positive child or adult number3");
+            if (adultNumber < 0 && childNumber < 0) {
+                Helper.showMsg("Please enter a positive child or adult number");
                 return;
             }
 
@@ -322,13 +321,13 @@ public class EmployeeView extends Layout {
             LocalDate entryDate = LocalDate.parse(this.fld_checkin.getText(), formatter);
             LocalDate exitDate = LocalDate.parse(this.fld_checkout.getText(), formatter);
             long dayCount = ChronoUnit.DAYS.between(entryDate, exitDate);
-            double totalPrice = ( this.roomManager.getById(selectId).getAdult_price() * adultNumber + this.roomManager.getById(selectId).getChild_price() * childNumber) * dayCount; // adultprice ve childprice cek
+            double totalPrice = (this.roomManager.getById(selectId).getAdult_price() * adultNumber + this.roomManager.getById(selectId).getChild_price() * childNumber) * dayCount; // adultprice ve childprice cek
             ReservationAddView reservationAddView = new ReservationAddView(null,
                     this.roomManager.getById(selectId),
                     this.fld_checkin.getText(),
                     this.fld_checkout.getText(),
                     totalPrice,
-                    adultNumber+childNumber
+                    adultNumber + childNumber
             );
 
 
@@ -349,13 +348,12 @@ public class EmployeeView extends Layout {
         btn_searchhotel.addActionListener(e -> {
             int selectedAdult = 0;
             int selectedChild = 0;
-                try {
-                     selectedAdult = Integer.parseInt(fld_adult.getText());
-                     selectedChild  = Integer.parseInt(fld_child.getText());
-                }catch (Exception exp){
-                    Helper.showMsg("Please enter a child or adult number");
-                }
-
+            try {
+                selectedAdult = Integer.parseInt(fld_adult.getText());
+                selectedChild = Integer.parseInt(fld_child.getText());
+            } catch (Exception exp) {
+                Helper.showMsg("Please enter a child or adult number");
+            }
 
 
             if (selectedAdult < 0 || selectedChild < 0) {

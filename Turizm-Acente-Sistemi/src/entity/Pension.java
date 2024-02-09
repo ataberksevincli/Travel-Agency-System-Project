@@ -8,6 +8,7 @@ public class Pension {
     private int hotel_id;
     private String pension_type;
     private Hotel hotel;
+
     public Pension(int id, int hotel_id, String pension_type) {
         this.id = id;
         this.hotel_id = hotel_id;
@@ -18,7 +19,7 @@ public class Pension {
     public Pension() {
     }
 
-    public enum PensionType{
+    public enum PensionType {
         UltraExclusive,
         Exclusive,
         Breakfast,
@@ -60,8 +61,9 @@ public class Pension {
         this.hotel = hotel;
     }
 
-    public ComboItem getComboItem(){
-        return new ComboItem(this.getId(),this.getPension_type());}
+    public ComboItem getComboItem() {
+        return new ComboItem(this.getId(), this.getPension_type());
+    }
 
     @Override
     public String toString() {

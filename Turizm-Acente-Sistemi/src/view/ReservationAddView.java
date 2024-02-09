@@ -75,7 +75,7 @@ public class ReservationAddView extends Layout {
     private double totalPrice;
 
 
-    public ReservationAddView(Reservation reservation, Room selectedRoom, String entry_date, String exit_date, double totalPrice,int customerTotalNumber) {
+    public ReservationAddView(Reservation reservation, Room selectedRoom, String entry_date, String exit_date, double totalPrice, int customerTotalNumber) {
         this.room = selectedRoom;
         if (reservation == null) {
             this.reservation = new Reservation();

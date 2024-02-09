@@ -2,6 +2,7 @@ package dao;
 
 import core.Db;
 import entity.Pension;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ public class PensionDao {
     public ArrayList<Pension> findAll() {
         return this.selectByQuery("SELECT * FROM public.hotel_pension ORDER BY id ASC");
     }
+
     public ArrayList<Pension> selectByQuery(String query) {
         ArrayList<Pension> pensionList = new ArrayList<>();
         try {
@@ -34,6 +36,7 @@ public class PensionDao {
         }
         return pensionList;
     }
+
     public Pension getById(int id) {
         Pension obj = null;
         String query = "SELECT * FROM public.hotel_pension WHERE id = ? ";

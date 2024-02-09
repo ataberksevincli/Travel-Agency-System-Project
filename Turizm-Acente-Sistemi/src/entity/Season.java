@@ -68,6 +68,9 @@ public class Season {
         this.hotel = hotel;
     }
 
-    public ComboItem getComboItem(){
-        return new ComboItem(this.getId(), this.getStart_date() + " - " + this.getFinish_date());};
+    public ComboItem getComboItem() {
+        return new ComboItem(this.getId(), this.getStart_date() + " - " + this.getFinish_date());
+    }
+
+    ;
 }

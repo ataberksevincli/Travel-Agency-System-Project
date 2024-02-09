@@ -35,7 +35,7 @@ public class Reservation {
         this.guest_phone = guest_phone;
     }
 
-    public Reservation(){
+    public Reservation() {
 
     }
 
@@ -119,8 +119,9 @@ public class Reservation {
         this.guest_phone = guest_phone;
     }
 
-    public ComboItem getComboItem(){
-        return new ComboItem(this.getId(),this.getGuest_name());}
+    public ComboItem getComboItem() {
+        return new ComboItem(this.getId(), this.getGuest_name());
+    }
 
     @Override
     public String toString() {

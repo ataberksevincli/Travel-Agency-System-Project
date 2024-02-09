@@ -14,7 +14,9 @@ public class SeasonDao {
     private final Connection con;
 
     private final HotelDao hotelDao = new HotelDao();
-    public SeasonDao() {this.con = Db.getInstance();
+
+    public SeasonDao() {
+        this.con = Db.getInstance();
     }
 
 
@@ -81,7 +83,6 @@ public class SeasonDao {
     }
 
 
-
     public Season match(ResultSet rs) throws SQLException {
         Season season = new Season();
         season.setId(rs.getInt("id"));
@@ -91,6 +92,7 @@ public class SeasonDao {
         season.setFinish_date(LocalDate.parse(rs.getString("finish_date")));
         return season;
     }
+
     public Season getById(int id) {
         Season obj = null;
         String query = "SELECT * FROM public.hotel_season WHERE id = ? ";

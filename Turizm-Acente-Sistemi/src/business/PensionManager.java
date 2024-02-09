@@ -19,22 +19,22 @@ public class PensionManager {
         return this.pensionDao.findAll();
     }
 
-    public boolean save(Pension pension){
-        if (pension.getId() !=0){
+    public boolean save(Pension pension) {
+        if (pension.getId() != 0) {
             Helper.showMsg("error");
         }
         return this.pensionDao.save(pension);
     }
 
-    public boolean update( Pension pension){
-        if (this.getById(pension.getId()) == null){
+    public boolean update(Pension pension) {
+        if (this.getById(pension.getId()) == null) {
 
             Helper.showMsg("notFound");
         }
         return this.pensionDao.update(pension);
     }
 
-    public ArrayList<Object[]> getForTable(int size,ArrayList<Pension> pensionList) {
+    public ArrayList<Object[]> getForTable(int size, ArrayList<Pension> pensionList) {
         ArrayList<Object[]> pensionRowList = new ArrayList<>();
         for (Pension pension : pensionList) {
             Object[] rowObject = new Object[size];
@@ -60,7 +60,8 @@ public class PensionManager {
 
         return this.pensionDao.selectByQuery(query);
     }
-    public  Pension getById(int id){
+
+    public Pension getById(int id) {
         return this.pensionDao.getById(id);
     }
 

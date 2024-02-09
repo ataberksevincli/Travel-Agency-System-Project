@@ -41,7 +41,7 @@ public class Hotel {
     }
 
 
-    public enum HotelStar{
+    public enum HotelStar {
 
     }
 
@@ -149,8 +149,9 @@ public class Hotel {
         this.room_service = room_service;
     }
 
-    public ComboItem getComboItem(){
-        return new ComboItem(this.getId(), this.getId() + " - " + this.getName() + " - " + this.getAdress());}
+    public ComboItem getComboItem() {
+        return new ComboItem(this.getId(), this.getId() + " - " + this.getName() + " - " + this.getAdress());
+    }
 
     @Override
     public String toString() {

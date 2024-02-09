@@ -11,7 +11,7 @@ import entity.User;
 import javax.swing.*;
 import java.util.Objects;
 
-public class HotelAddView extends Layout{
+public class HotelAddView extends Layout {
     private JPanel container;
     private JPanel pnl_addhotel;
     private JLabel lbl_addhotel;
@@ -45,6 +45,7 @@ public class HotelAddView extends Layout{
     private HotelManager hotelManager;
 
     private UserManager userManager;
+
     public HotelAddView() {
         this.userManager = new UserManager();
         this.hotelManager = new HotelManager();
@@ -58,7 +59,7 @@ public class HotelAddView extends Layout{
         }*/
 
         this.btn_save.addActionListener(e -> {
-            if (Helper.isFieldListEmpty(new JTextField[]{this.fld_hotel_name, this.fld_mail,this.fld_phonenumber,this.fld_adress})) {
+            if (Helper.isFieldListEmpty(new JTextField[]{this.fld_hotel_name, this.fld_mail, this.fld_phonenumber, this.fld_adress})) {
                 Helper.showMsg("fill");
             } else {
                 boolean result = false;
@@ -76,7 +77,7 @@ public class HotelAddView extends Layout{
                 this.hotel.setRoom_service(chck_roomservice.isSelected());
                 this.hotel.setStar((String) this.cmb_star.getSelectedItem());
 
-                    result = this.hotelManager.save(this.hotel);
+                result = this.hotelManager.save(this.hotel);
                 if (result) {
                     Helper.showMsg("done");
                     dispose();

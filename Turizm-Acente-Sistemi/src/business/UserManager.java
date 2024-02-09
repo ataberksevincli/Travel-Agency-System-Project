@@ -23,32 +23,34 @@ public class UserManager {
         return this.userDao.findByLogin(username, password);
     }
 
-    public boolean save(User user){
-        if (user.getId() !=0){
+    public boolean save(User user) {
+        if (user.getId() != 0) {
             Helper.showMsg("error");
         }
         return this.userDao.save(user);
     }
-    public boolean update( User user){
-        if (this.getById(user.getId()) == null){
+
+    public boolean update(User user) {
+        if (this.getById(user.getId()) == null) {
 
             Helper.showMsg("notFound");
         }
         return this.userDao.update(user);
     }
-    public boolean delete(int id){
-        if (this.getById(id) == null){
+
+    public boolean delete(int id) {
+        if (this.getById(id) == null) {
             Helper.showMsg(id + "ID kayıtlı marka bulunamadı");
             return false;
         }
         return this.userDao.delete(id);
     }
 
-    public  User getById(int id){
+    public User getById(int id) {
         return this.userDao.getById(id);
     }
 
-    public ArrayList<Object[]> getForTable(int size,ArrayList<User> userList) {
+    public ArrayList<Object[]> getForTable(int size, ArrayList<User> userList) {
         ArrayList<Object[]> userRowList = new ArrayList<>();
         for (User user : userList) {
             Object[] rowObject = new Object[size];
@@ -61,6 +63,7 @@ public class UserManager {
         }
         return userRowList;
     }
+
     public ArrayList<User> searchForTable(User.Role role) {
         String select = "SELECT * FROM public.user ";
         ArrayList<String> whereList = new ArrayList<>();

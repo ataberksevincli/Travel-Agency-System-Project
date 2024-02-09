@@ -65,8 +65,8 @@ public class SeasonAddView extends Layout {
             // Tarih alanlarını doldur
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate startDate = LocalDate.parse(fld_strt_date.getText(),formatter);
-                LocalDate finishDate = LocalDate.parse(fld_end_date.getText(),formatter);
+                LocalDate startDate = LocalDate.parse(fld_strt_date.getText(), formatter);
+                LocalDate finishDate = LocalDate.parse(fld_end_date.getText(), formatter);
                 this.season.setStart_date(startDate);
                 this.season.setFinish_date(finishDate);
             } catch (DateTimeParseException ex) {
@@ -83,6 +83,7 @@ public class SeasonAddView extends Layout {
             }
         });
     }
+
     private void createUIComponents() throws ParseException {
         this.fld_strt_date = new JFormattedTextField(new MaskFormatter("##/##/####"));
         this.fld_strt_date.setText("13/01/2021 ");

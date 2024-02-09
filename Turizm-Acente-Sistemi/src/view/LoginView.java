@@ -34,10 +34,10 @@ public class LoginView extends Layout {
                 if (loginUser == null) {
                     Helper.showMsg("User not Found");
                 } else {
-                    if (loginUser.getRole().equals("Admin")){
+                    if (loginUser.getRole().equals("Admin")) {
                         AdminView adminView = new AdminView(loginUser);
 
-                    }else{
+                    } else {
                         EmployeeView employeeView = new EmployeeView(loginUser);
                     }
                 }

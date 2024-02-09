@@ -8,13 +8,13 @@ public class User {
 
     private String role;
 
-    public enum Role{
+    public enum Role {
         Admin,
         Employee
     }
 
 
-    public User(){
+    public User() {
     }
 
 

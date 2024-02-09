@@ -31,11 +31,11 @@ public class Helper {
                 title = "Result";
 
             case "notFound":
-                msg ="User not found !";
+                msg = "User not found !";
                 title = "Bulunamadı";
 
             case "error":
-                msg ="You Made a Wrong Transaction!";
+                msg = "You Made a Wrong Transaction!";
                 title = "Error";
 
             default:
@@ -44,11 +44,12 @@ public class Helper {
         }
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
     }
-    public static boolean confirm(String str){
+
+    public static boolean confirm(String str) {
         String msg;
-        if (str.equals("sure")){
+        if (str.equals("sure")) {
             msg = "Are you sure you want to do this ?";
-        }else {
+        } else {
             msg = str;
         }
         return JOptionPane.showConfirmDialog(null, msg, "Are you sure ?", JOptionPane.YES_NO_OPTION) == 0;

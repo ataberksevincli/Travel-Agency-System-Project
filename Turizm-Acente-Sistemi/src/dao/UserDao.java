@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class UserDao {
     private final Connection con;
 
-    public UserDao(){
+    public UserDao() {
         this.con = Db.getInstance();
     }
 
@@ -32,20 +32,21 @@ public class UserDao {
         return userList;
     }
 
-    public ArrayList<User> selectByQuery(String query){
+    public ArrayList<User> selectByQuery(String query) {
         ArrayList<User> userList = new ArrayList<>();
         try {
             ResultSet rs = this.con.createStatement().executeQuery(query);
-            while (rs.next()){
+            while (rs.next()) {
                 userList.add(this.match(rs));
             }
 
-        }catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
 
         }
         return userList;
     }
+
     public User findByLogin(String userName, String password) {
         User obj = null;
         String query = "SELECT * FROM public.user WHERE user_name = ? AND user_password = ?";
@@ -100,6 +101,7 @@ public class UserDao {
         }
         return true;
     }
+
     public boolean update(User user) {
         String query = "UPDATE public.user SET" +
                 " user_name = ?," +
@@ -120,6 +122,7 @@ public class UserDao {
         }
         return true;
     }
+
     public boolean delete(int id) {
         String query = "DELETE FROM public.user WHERE user_id = ?";
         try {
@@ -131,6 +134,7 @@ public class UserDao {
         }
         return true;
     }
+
     public User match(ResultSet rs) throws SQLException {
         User obj = new User();
         obj.setId(rs.getInt("user_id"));

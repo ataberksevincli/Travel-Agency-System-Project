@@ -2,6 +2,7 @@ package dao;
 
 import core.Db;
 import entity.Hotel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ public class HotelDao {
 
     private final Connection con;
 
-    public HotelDao(){
+    public HotelDao() {
         this.con = Db.getInstance();
     }
 
@@ -58,13 +59,13 @@ public class HotelDao {
             pr.setString(3, hotel.getMail());
             pr.setString(4, hotel.getPhone_number());
             pr.setString(5, hotel.getStar());
-            pr.setBoolean(6,hotel.isPark());
-            pr.setBoolean(7,hotel.isWifi());
-            pr.setBoolean(8,hotel.isPool());
-            pr.setBoolean(9,hotel.isFitness());
-            pr.setBoolean(10,hotel.isConcierge());
-            pr.setBoolean(11,hotel.isSpa());
-            pr.setBoolean(12,hotel.isRoom_service());
+            pr.setBoolean(6, hotel.isPark());
+            pr.setBoolean(7, hotel.isWifi());
+            pr.setBoolean(8, hotel.isPool());
+            pr.setBoolean(9, hotel.isFitness());
+            pr.setBoolean(10, hotel.isConcierge());
+            pr.setBoolean(11, hotel.isSpa());
+            pr.setBoolean(12, hotel.isRoom_service());
             return pr.executeUpdate() != -1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -91,15 +92,15 @@ public class HotelDao {
         return obj;
     }
 
-    public ArrayList<Hotel> selectByQuery(String query){
+    public ArrayList<Hotel> selectByQuery(String query) {
         ArrayList<Hotel> userList = new ArrayList<>();
         try {
             ResultSet rs = this.con.createStatement().executeQuery(query);
-            while (rs.next()){
+            while (rs.next()) {
                 userList.add(this.match(rs));
             }
 
-        }catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
 
         }

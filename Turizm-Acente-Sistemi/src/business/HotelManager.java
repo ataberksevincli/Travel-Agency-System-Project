@@ -14,6 +14,7 @@ public class HotelManager {
     public HotelManager() {
         this.hotelDao = new HotelDao();
     }
+
     public ArrayList<Hotel> findAll() {
         return this.hotelDao.findAll();
     }
@@ -41,14 +42,14 @@ public class HotelManager {
         return hotelRowList;
     }
 
-    public boolean save(Hotel hotel){
-        if (hotel.getId() !=0){
+    public boolean save(Hotel hotel) {
+        if (hotel.getId() != 0) {
             Helper.showMsg("error");
         }
         return this.hotelDao.save(hotel);
     }
 
-    public Hotel getById(int id){
+    public Hotel getById(int id) {
         return this.hotelDao.getById(id);
     }
 }

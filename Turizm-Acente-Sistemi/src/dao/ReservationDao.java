@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class ReservationDao {
     private final Connection con;
+
     public ReservationDao() {
         this.con = Db.getInstance();
     }
@@ -18,6 +19,7 @@ public class ReservationDao {
     public ArrayList<Reservation> findAll() {
         return this.selectByQuery("SELECT * FROM public.reservation ORDER BY id ASC");
     }
+
     public ArrayList<Reservation> selectByQuery(String query) {
         ArrayList<Reservation> reservationList = new ArrayList<>();
         try {
@@ -32,6 +34,7 @@ public class ReservationDao {
         }
         return reservationList;
     }
+
     public Reservation getById(int id) {
         Reservation obj = null;
         String query = "SELECT * FROM public.reservation WHERE id = ? ";
@@ -105,7 +108,7 @@ public class ReservationDao {
                 pr.setString(7, reservation.getGuest_citizen_id());
                 pr.setString(8, reservation.getGuest_mail());
                 pr.setString(9, reservation.getGuest_phone());
-                pr.setInt(10,reservation.getId());
+                pr.setInt(10, reservation.getId());
 
                 return pr.executeUpdate() != -1;
             }
